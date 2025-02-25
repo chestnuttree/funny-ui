@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水滴样式按钮</title>
+    <style>
+        
+:root {
+  --ocean-blue: #40c4ff;       /* 海洋主色 */
+  --deep-blue: #0077c2;        /* 深海颜色 */
+  --foam-white: #e6f4ff;       /* 浪花白色 */
+
+  --pearl-shine: rgba(255,255,255,0.4); /* 珍珠光泽 */
+}
+/* 热带海洋主题 */
+/* :root {
+  --ocean-blue: #48d1cc;      
+  --deep-blue: #007ba7;     
+  --foam-white: #f0ffff;       
+} */
+
+.ocean-button {
+  position: relative;
+  padding: 1.5rem 3rem;
+  border: none;
+  border-radius: 30px 8px 30px 8px;
+  background: linear-gradient(
+    135deg,
+    var(--ocean-blue) 0%,
+    var(--deep-blue) 100%
+  );
+  color: var(--foam-white);
+  font-size: 1.3rem;
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 
+    0 8px 20px rgba(0,119,194,0.3),
+    inset 0 2px 4px var(--pearl-shine);
+}
+
+/* 动态波浪效果 */
+.wave {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 200%;
+  height: 20px;
+  background: url('data:image/svg+xml,<svg viewBox="0 0 100 20"><path d="M0 15 q25-15 50 0 t50 0 v5 H0z" fill="%23e6f4ff"/></svg>');
+  animation: waveFlow 3s linear infinite;
+  opacity: 0.7;
+}
+
+/* 气泡动画 */
+.bubbles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bubbles::before,
+.bubbles::after {
+  content: '';
+  position: absolute;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  animation: bubbleRise 2s infinite;
+}
+
+.bubbles::before {
+  width: 8px;
+  height: 8px;
+  left: 20%;
+  animation-delay: 0.3s;
+}
+
+.bubbles::after {
+  width: 5px;
+  height: 5px;
+  left: 70%;
+}
+
+/* 文字效果 */
+.text {
+  position: relative;
+  z-index: 2;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* 悬停效果 */
+.ocean-button:hover {
+  transform: rotate(-2deg) scale(1.05);
+  border-radius: 8px 30px 8px 30px;
+  box-shadow: 
+    0 12px 25px rgba(0,119,194,0.5),
+    inset 0 3px 6px var(--pearl-shine);
+}
+
+/* 点击效果 */
+.ocean-button:active {
+  transform: scale(0.98);
+  background: linear-gradient(
+    135deg,
+    var(--deep-blue) 0%,
+    var(--ocean-blue) 100%
+  );
+}
+
+/* 波浪动画 */
+@keyframes waveFlow {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  100% { transform: translateX(0%) rotate(1deg); }
+}
+
+/* 气泡上升动画 */
+@keyframes bubbleRise {
+  0% {
+    transform: translateY(100%) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100%) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* 添加小鱼图案 */
+.ocean-button::after {
+  content: '🐠';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: right 0.5s;
+}
+
+.ocean-button:hover::after {
+  right: 15px;
+}
+    </style>
+</head>
+<body>
+
+    <button class="ocean-button">
+        <span class="bubbles"></span>
+        <span class="wave"></span>
+        <span class="text">Explore Ocean</span>
+      </button>
+
+</body>
+</html>

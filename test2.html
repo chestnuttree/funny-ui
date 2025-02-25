@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水滴样式按钮</title>
+    <style>
+        :root {
+  --moss-green: #5c8d6a;      /* 苔藓绿 */
+  --pine-green: #3b5e4b;      /* 松树绿 */
+  --tree-bark: #6b4d3d;       /* 树皮棕 */
+  --forest-light: #a5c8b0;    /* 林间光斑 */
+}
+/* 秋日金光 */
+/* :root {
+    --moss-green: #8f9779;     
+  --pine-green: #6b4423;      
+  --tree-bark: #5d432c;     
+  --forest-light: #d4a96c;   
+} */
+
+.forest-button {
+  position: relative;
+  padding: 1.4rem 2.8rem;
+  border: 3px solid var(--tree-bark);
+  border-radius: 12px 30px;
+  background: 
+    linear-gradient(
+      145deg,
+      var(--moss-green) 30%,
+      var(--pine-green) 100%
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 15px,
+      rgba(0,0,0,0.1) 16px
+    ); /* 树皮质感 */
+  color: #e8f3ec;
+  font-size: 1.3rem;
+  font-family: 'Trebuchet MS', sans-serif;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 8px 20px rgba(59,94,75,0.3),
+    inset 0 2px 4px rgba(255,255,255,0.2);
+}
+
+/* 落叶动画 */
+.leaves::before,
+.leaves::after {
+  content: '🍃';
+  position: absolute;
+  animation: leafFall 6s infinite linear;
+  opacity: 0.6;
+}
+
+.leaves::before {
+  left: 10%;
+  top: -20%;
+  animation-delay: 0.5s;
+}
+
+.leaves::after {
+  left: 80%;
+  top: -30%;
+  transform: scaleX(-1);
+}
+
+/* 林间光斑 */
+.sunbeam {
+  position: absolute;
+  width: 150%;
+  height: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(165,200,176,0.3) 0%,
+    transparent 60%
+  );
+  animation: beamMove 8s infinite linear;
+}
+
+/* 文字效果 */
+.text {
+  position: relative;
+  z-index: 2;
+  text-shadow: 
+    1px 1px 2px rgba(0,0,0,0.3),
+    -1px -1px 1px rgba(255,255,255,0.2);
+}
+
+/* 悬停效果 */
+.forest-button:hover {
+  transform: rotate(1deg) scale(1.05);
+  border-radius: 30px 12px;
+  box-shadow: 
+    0 12px 25px rgba(59,94,75,0.5),
+    inset 0 3px 6px rgba(255,255,255,0.3);
+}
+
+/* 点击效果 */
+.forest-button:active {
+  transform: scale(0.98);
+  background: 
+    linear-gradient(
+      145deg,
+      var(--pine-green) 30%,
+      var(--moss-green) 100%
+    );
+}
+
+/* 落叶动画 */
+@keyframes leafFall {
+  0% {
+    transform: translateY(-100%) rotate(0deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(300%) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 光斑移动动画 */
+@keyframes beamMove {
+  0% { transform: translateX(-50%) rotate(15deg); }
+  50% { transform: translateX(50%) rotate(-15deg); }
+  100% { transform: translateX(-50%) rotate(15deg); }
+}
+
+/* 添加更多森林元素 */
+.forest-button::after {
+  content: '🌲';
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: right 0.6s ease;
+  opacity: 0.7;
+}
+
+.forest-button:hover::after {
+  right: 10px;
+}
+    </style>
+</head>
+<body>
+
+    <button class="forest-button">
+        <span class="leaves"></span>
+        <span class="sunbeam"></span>
+        <span class="text">Enter the Forest</span>
+      </button>
+
+</body>
+</html>
