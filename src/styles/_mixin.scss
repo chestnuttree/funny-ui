@@ -6,32 +6,10 @@
 
 @mixin button-style(
   $background,
-  $border,
   $color,
-  $hover-background: lighten($background, 7.5%),
-  $hover-border: lighten($border, 10%),
-  $hover-color: $color,
 ) {
   color: $color;
   background: $background;
-  border-color: $border;
-  &:hover {
-    color: $hover-color;
-    background: $hover-background;
-    border-color: $hover-border;    
-  }
-  &:focus,
-  &.focus {
-    color: $hover-color;
-    background: $hover-background;
-    border-color: $hover-border;    
-  }
-  &:disabled,
-  &.disabled {
-    color: $color;
-    background: $background;
-    border-color: $border;    
-  }
 }
 
 @mixin alert-style($background, $border, $color) {
@@ -41,10 +19,10 @@
 }
 
 @mixin zoom-animation(
-  $direction: 'top',
+  $direction: "top",
   $scaleStart: scaleY(0),
   $scaleEnd: scaleY(1),
-  $origin: center top,
+  $origin: center top
 ) {
   .zoom-in-#{$direction}-enter {
     opacity: 0;
@@ -53,8 +31,9 @@
   .zoom-in-#{$direction}-enter-active {
     opacity: 1;
     transform: $scaleEnd;
-    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
-    transform-origin: $origin
+    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms,
+      opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+    transform-origin: $origin;
   }
   .zoom-in-#{$direction}-exit {
     opacity: 1;
@@ -62,7 +41,8 @@
   .zoom-in-#{$direction}-exit-active {
     opacity: 0;
     transform: $scaleStart;
-    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms,
+      opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
     transform-origin: $origin;
   }
 }
@@ -80,4 +60,48 @@
 @mixin border-top-radius($raduis) {
   border-top-left-radius: $raduis;
   border-top-right-radius: $raduis;
+}
+@mixin bubbles() {
+  /* 气泡动画 */
+  .bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .bubbles::before,
+  .bubbles::after {
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: bubbleRise 2s infinite;
+  }
+
+  .bubbles::before {
+    width: 8px;
+    height: 8px;
+    left: 20%;
+    animation-delay: 0.3s;
+  }
+
+  .bubbles::after {
+    width: 5px;
+    height: 5px;
+    left: 70%;
+  }
+}
+@keyframes bubbleRise {
+  0% {
+    transform: translateY(100%) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100%) scale(1.2);
+    opacity: 0;
+  }
 }

@@ -2,7 +2,7 @@ import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
 import classNames from 'classnames'
 
 export type ButtonSize = 'lg' | 'sm'
-export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
+export type ButtonType = 'primary' | 'default' | 'link'
 
 interface BaseButtonProps {
   className?: string;
@@ -61,6 +61,7 @@ export const Button: FC<ButtonProps> = (props) => {
         disabled={disabled}
         {...restProps}
       >
+        <span className="bubbles"></span>
         {children}
       </button>
     )

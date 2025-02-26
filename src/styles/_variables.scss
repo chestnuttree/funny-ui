@@ -20,8 +20,37 @@ $yellow:  #fadb14 !default;
 $green:   #52c41a !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
+//海洋背景
+$ocean-bg: linear-gradient(
+  135deg,
+  #40c4ff 0%,
+  #0077c2 100%
+) !default;
 
-$primary:       $blue !default;
+//热带海洋背景
+$soft-ocean-bg: linear-gradient(
+  135deg,
+  #48d1cc 0%,
+  #007ba7 100%
+) !default;
+
+//森林背景
+$forest-bg : linear-gradient(
+  135deg,
+  #5c8d6a 0%,
+  #3b5e4b 100%
+) !default;
+
+
+//秋日森林背景
+$soft-forest-bg: linear-gradient(
+  135deg,
+  #8f9779 0%,
+  #6b4423 100%
+) !default;
+
+$primary-bg:    $ocean-bg !default;
+$primary:       #0077c2 !default;
 $secondary:     $gray-600 !default;
 $success:       $green !default;
 $info:          $cyan !default;
@@ -41,6 +70,7 @@ $theme-colors:
   "light":      $light,
   "dark":       $dark
 );
+
 
 $font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
