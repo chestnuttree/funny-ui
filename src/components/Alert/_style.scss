@@ -1,0 +1,37 @@
+$alert-colors: 
+(
+  "default":    $ocean-bg,
+  "success":    $success,
+  "warning":    $warning,
+  "danger":     $danger,
+);
+.funny-alert {
+  width: 400px;
+  position: relative;
+  padding: $alert-padding-y $alert-padding-x;
+  margin-bottom: $alert-margin-bottom;
+  border: $alert-border-width solid transparent;
+  border-radius: $alert-border-radius;
+  .funny-alert-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: $alert-padding-y $alert-padding-x;
+    color: inherit;
+    cursor: pointer;
+  }
+  .bold-title {
+    font-weight: $font-weight-bold;
+  }
+  .funny-alert-desc {
+    font-size: $alert-description-font-size;
+    margin: $alert-description-top-margin 0 0;
+  }
+  @include bubbles();
+}
+@each $color, $value in $alert-colors {
+  .funny-alert-#{$color} {
+    @include alert-style($value, $white);
+  }
+}
+

@@ -4,7 +4,6 @@ import React, {
   useState,
   FunctionComponentElement,
   ReactNode,
-  useRef,
 } from "react";
 import classNames from "classnames";
 import { MenuContext } from "./menu";
