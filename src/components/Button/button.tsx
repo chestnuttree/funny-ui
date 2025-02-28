@@ -4,7 +4,7 @@ import classNames from 'classnames'
 export type ButtonSize = 'lg' | 'sm'
 export type ButtonType = 'primary' | 'default' | 'link'
 
-interface BaseButtonProps {
+export interface BaseButtonProps {
   className?: string;
   /**设置 Button 的禁用 */
   disabled?: boolean;
