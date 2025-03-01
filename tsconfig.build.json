@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "outDir": "build",
+        "module": "esnext",
+        "target": "es5",
+        "declaration": true,
+        "jsx": "react-jsx",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "types": ["react", "react-dom"],
+        "skipLibCheck": true  // 临时跳过第三方库类型检查
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "src/**/*.test.tsx",
+        "src/**/*.stories.tsx",
+        "src/setupTests.ts",
+    ]
+}
