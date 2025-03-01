@@ -4,6 +4,7 @@ import { Input, InputProps } from './input'
 export default {
   title: 'Input',
   id: 'Input',
+  tags: ['autodocs'],
   component: Input,
   decorators: [
     (Story) => (

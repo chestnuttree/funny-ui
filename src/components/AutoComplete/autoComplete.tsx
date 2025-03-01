@@ -29,7 +29,7 @@ export interface AutoCompleteProps extends Omit<InputProps, 'onSelect' | 'onChan
  * ### 引用方法
  * 
  * ~~~js
- * import { AutoComplete } from 'vikingship'
+ * import { AutoComplete } from 'funny-ui'
  * ~~~
  */
 export const AutoComplete: FC<AutoCompleteProps> = (props:AutoCompleteProps) => {
@@ -131,7 +131,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props:AutoCompleteProps) => 
         timeout={300}
         onExited={() => {setSuggestions([])}}
       >
-        <ul className="viking-suggestion-list">
+        <ul className="funny-suggestion-list">
           { loading &&
             <div className="suggstions-loading-icon">
               <Icon icon="spinner" spin/>
@@ -152,7 +152,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props:AutoCompleteProps) => 
     )
   }
   return (
-    <div className="viking-auto-complete" ref={componentRef}>
+    <div className="funny-auto-complete" ref={componentRef}>
       <Input
         {...restProps}
         value={inputValue}

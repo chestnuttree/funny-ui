@@ -1,6 +1,7 @@
 import "./App.css";
 import Alert from "./components/Alert/alert";
 import Button from "./components/Button/button";
+import Input from "./components/Input/input";
 import Menu from "./components/Menu/menu";
 import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
@@ -57,6 +58,11 @@ function App() {
         <TabItem label="card1">three</TabItem>
       </Tabs>
       <i className="fa" />
+      <div style={style}>
+      <Input prepend="$" placeholder="sdgfsd"></Input>
+      <input type="text" defaultValue="a" />
+      </div>
+     
     </div>
   );
 }
