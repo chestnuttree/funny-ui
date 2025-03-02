@@ -1,0 +1,9 @@
+npm test
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 直接运行 ESLint（推荐方式）
+npm run test:nowatch && npm run lint
+
+# 或使用 lint-staged（推荐）
+# npx lint-staged
