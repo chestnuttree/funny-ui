@@ -2,7 +2,6 @@ import React, { FC, useState } from "react";
 import classNames from "classnames";
 import Icon from "../Icon";
 import Transition from "../Transition";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 export type AlertType = "success" | "default" | "danger" | "warning";
 
 export interface AlertProps {

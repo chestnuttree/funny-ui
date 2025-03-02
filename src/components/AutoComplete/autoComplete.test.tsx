@@ -1,6 +1,5 @@
-import React from 'react'
 import { config } from 'react-transition-group'
-import { render, RenderResult, fireEvent, waitFor } from '@testing-library/react'
+import { render, RenderResult, fireEvent, waitFor, screen} from '@testing-library/react'
 import { AutoComplete, AutoCompleteProps, DataSourceType } from './autoComplete'
 
 config.disabled = true
@@ -36,21 +35,23 @@ let wrapper: RenderResult, inputNode: HTMLInputElement
 
 describe('test AutoComplete component', () => {
   beforeEach(() => {
+    // eslint-disable-next-line testing-library/no-render-in-setup
     wrapper = render(<AutoComplete {...testProps}/>)
-    inputNode = wrapper.getByPlaceholderText('auto-complete') as HTMLInputElement
+    inputNode = screen.getByPlaceholderText('auto-complete') as HTMLInputElement
   })
   it('test basic AutoComplete behavior', async () => {
     // input change
     fireEvent.change(inputNode, {target: { value: 'a'}})
     await waitFor(() => {
-      expect(wrapper.queryByText('ab')).toBeInTheDocument()
+      expect(screen.getByText('ab')).toBeInTheDocument()
     })
     // should have two suggestion items
+    // eslint-disable-next-line testing-library/no-node-access
     expect(wrapper.container.querySelectorAll('.suggestion-item').length).toEqual(2)
     //click the first item
-    fireEvent.click(wrapper.getByText('ab'))
+    fireEvent.click(screen.getByText('ab'))
     expect(testProps.onSelect).toHaveBeenCalledWith({value: 'ab', number: 11})
-    expect(wrapper.queryByText('ab')).not.toBeInTheDocument()
+    expect(screen.queryByText('ab')).not.toBeInTheDocument()
     //fill the input
     expect(inputNode.value).toBe('ab')
   })
@@ -58,10 +59,10 @@ describe('test AutoComplete component', () => {
     // input change
     fireEvent.change(inputNode, {target: { value: 'a'}})
     await waitFor(() => {
-      expect(wrapper.queryByText('ab')).toBeInTheDocument()
+      expect(screen.getByText('ab')).toBeInTheDocument()
     })
-    const firstResult = wrapper.queryByText('ab')
-    const secondResult = wrapper.queryByText('abc')
+    const firstResult = screen.queryByText('ab')
+    const secondResult = screen.queryByText('abc')
 
     // arrow down
     fireEvent.keyDown(inputNode, { keyCode: 40 })
@@ -75,23 +76,23 @@ describe('test AutoComplete component', () => {
     // press enter
     fireEvent.keyDown(inputNode, { keyCode: 13 })
     expect(testProps.onSelect).toHaveBeenCalledWith({value: 'ab', number: 11})
-    expect(wrapper.queryByText('ab')).not.toBeInTheDocument()
+    expect(screen.queryByText('ab')).not.toBeInTheDocument()
   })
   it('click outside should hide the dropdown', async () => {
     // input change
     fireEvent.change(inputNode, {target: { value: 'a'}})
     await waitFor(() => {
-      expect(wrapper.queryByText('ab')).toBeInTheDocument()
+      expect(screen.getByText('ab')).toBeInTheDocument()
     })
     fireEvent.click(document)
-    expect(wrapper.queryByText('ab')).not.toBeInTheDocument()
+    expect(screen.queryByText('ab')).not.toBeInTheDocument()
   })
   it('renderOption should generate the right template', async () => {
-    const wrapper = render(<AutoComplete {...testPropsWithCustomRender}/>)
-    const inputNode = wrapper.getByPlaceholderText('auto-complete-2') as HTMLInputElement
+    render(<AutoComplete {...testPropsWithCustomRender}/>)
+    const inputNode = screen.getByPlaceholderText('auto-complete-2') as HTMLInputElement
     fireEvent.change(inputNode, {target: { value: 'a'}})
     await waitFor(() => {
-      expect(wrapper.queryByText('name: ab')).toBeInTheDocument()
+      expect(screen.getByText('name: ab')).toBeInTheDocument()
     })
   })
   it('async fetchSuggestions should works fine', async () => {
@@ -100,12 +101,13 @@ describe('test AutoComplete component', () => {
       fetchSuggestions: jest.fn((query) => { return Promise.resolve(testArray.filter(item => item.value.includes(query))) }),
       placeholder: 'auto-complete-3',
     }
-    const wrapper = render(<AutoComplete {...testPropsWithPromise}/>)
-    const inputNode = wrapper.getByPlaceholderText('auto-complete-3') as HTMLInputElement
+    render(<AutoComplete {...testPropsWithPromise}/>)
+    const inputNode = screen.getByPlaceholderText('auto-complete-3') as HTMLInputElement
     fireEvent.change(inputNode, {target: { value: 'a'}})
     await waitFor(() => {
       expect(testPropsWithPromise.fetchSuggestions).toHaveBeenCalled()
-      expect(wrapper.queryByText('ab')).toBeInTheDocument()
+      // eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
+      expect(screen.getByText('ab')).toBeInTheDocument()
     })
   })
 })
