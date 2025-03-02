@@ -1,5 +1,5 @@
 {
-  "name": "funny-ui",
+  "name": "@yuntang/funny-ui",
   "version": "0.1.0",
   "description": "React components library",
   "author": "Tang Yun",
@@ -7,42 +7,50 @@
   "main": "build/index.js",
   "module": "build/index.js",
   "types": "build/index.d.ts",
+  "license": "Apache-2.0",
   "keywords": [
     "Component",
     "UI",
     "React"
   ],
+  "homepage": "https://github.com/chestnuttree/funny-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chestnuttree/funny-ui"
+  },
+  "files": [
+    "build"
+  ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.126",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@types/react-transition-group": "^4.4.12",
     "classnames": "^2.5.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1",
-    "react-transition-group": "^4.4.5",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "react-transition-group": "^4.4.5"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
+    "test:nowatch": "cross-env CI=true react-scripts test",
+    "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "clean": "rimraf ./build",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./build/index.css",
-    "build": "npm run clean && npm run build-ts && npm run build-css"
+    "build": "npm run clean && npm run build-ts && npm run build-css",
+    "prepublish": "npm run build",
+    "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test:nowatch && npm run lint"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -73,12 +81,28 @@
     "@storybook/react": "^8.6.2",
     "@storybook/react-webpack5": "^8.6.2",
     "@storybook/test": "^8.6.2",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.126",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@types/react-transition-group": "^4.4.12",
+    "cross-env": "^7.0.3",
     "eslint-plugin-storybook": "^0.11.3",
+    "husky": "^9.1.7",
     "node-sass": "^7.0.3",
     "prop-types": "^15.8.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scripts": "5.0.1",
     "resolve-url-loader": "^5.0.0",
     "sass-loader": "^16.0.5",
     "storybook": "^8.6.2",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4",
     "webpack": "^5.98.0"
   }
 }
