@@ -1,11 +1,10 @@
-import React from 'react'
 import { StoryObj, Meta } from '@storybook/react'
 
 
 import Alert, { AlertProps } from './alert'
 
 export default { 
-  title: 'Alert 组件',
+  title: 'Alert',
   id: 'Alert',
   component: Alert,
   tags: ['autodocs'],

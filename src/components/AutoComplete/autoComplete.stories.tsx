@@ -1,4 +1,3 @@
-import React from 'react'
 import { StoryObj, Meta } from '@storybook/react'
 import { AutoComplete, AutoCompleteProps, DataSourceType } from './autoComplete'
 interface LakerPlayerProps {
@@ -11,7 +10,7 @@ interface GithubUserProps {
   avatar_url: string;
 }
 export default { 
-  title: 'AutoComplete 组件',
+  title: 'AutoComplete',
   component: AutoComplete,
   id: 'AutoComplete',
   parameters: {
